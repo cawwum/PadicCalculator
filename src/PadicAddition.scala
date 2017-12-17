@@ -1,19 +1,7 @@
-class PadicAddition()
+class PadicAddition(p:Int)
 {
-    //The p in p-adic...
-    var p: Int = 10;
-
-    val helloWorld: String = "What is up with it my people!!!!";
-
     //An infinite stream of zeroes
     def zeroes(): Stream[Int] = 0 #:: zeroes()
-
-    //An infinite stream of p-1
-    def pminus1s(): Stream[Int] = (p - 1) #:: pminus1s()
-
-    def twelve():Stream[Int] = 2 #:: Stream.cons(1,Stream.empty)
-
-    def nineynine():Stream[Int] = 9 #:: Stream.cons(9,Stream.empty)
 
     //Adds 2 infinite streams of digits together
     def add(n1: Stream[Int], n2: Stream[Int]): Stream[Int] =
@@ -48,13 +36,5 @@ class PadicAddition()
 
         //call the helper method
         addHelper(n1, n2, 0)
-    }
-
-    val a = add(add(twelve(),pminus1s()),nineynine()).iterator
-
-    def exampleAdd() =
-    {
-        if(a.hasNext)println(a.next())
-        else println("No more! I can't take it anymore !!")
     }
 }

@@ -16,11 +16,11 @@ public class PadicCalculator extends Application
     @Override
     public void start(Stage primaryStage)
     {
-        PadicAddition padicOps = new PadicAddition();
+        Expression expression = new Expression();
 
         primaryStage.setTitle("Hello World!");
         Button btn = new Button();
-        btn.setText(padicOps.helloWorld());
+        btn.setText(expression.helloWorld());
 
         btn.setOnAction(new EventHandler<ActionEvent>()
         {
@@ -28,7 +28,7 @@ public class PadicCalculator extends Application
             @Override
             public void handle(ActionEvent event)
             {
-                padicOps.exampleAdd();
+                expression.exampleIt();
             }
         });
 
