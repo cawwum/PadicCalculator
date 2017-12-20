@@ -6,7 +6,7 @@ class PadicAddition(p:Int)
     //Adds 2 infinite streams of digits together
     def add(n1: Stream[Int], n2: Stream[Int]): Stream[Int] =
     {
-        def adding(n1: Stream[Int], n2: Stream[Int], carry: Int) = (n1, n2) match
+        def adding(n1: =>Stream[Int], n2: =>Stream[Int], carry: Int) = (n1, n2) match
         {
             //only used in the addhelper method so does not need to match on anything else
             case (h1#::n1s, h2#::n2s) =>
@@ -21,7 +21,7 @@ class PadicAddition(p:Int)
         }
 
         //helper so carry can be passed as a parameter
-        def addHelper(n1: Stream[Int], n2: Stream[Int], carry: Int): Stream[Int] = (n1, n2,carry) match
+        def addHelper(n1: => Stream[Int], n2: => Stream[Int], carry: Int):Stream[Int] = (n1, n2,carry) match
         {
             //If both empty and carry of 0, the rest of the digits must all be 0
             case (Stream.Empty,Stream.Empty,0) => Stream.empty
