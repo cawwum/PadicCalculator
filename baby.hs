@@ -1,4 +1,5 @@
 p = 10
+pminus1 = (p-1)
 
 add' :: [Integer] -> [Integer] -> Integer -> [Integer]
 add' [] [] 0 = []
@@ -24,6 +25,15 @@ mult :: [Integer] -> [Integer] -> [Integer]
 mult [] _ = []
 mult (x:xs) ys = addShift (addLoop x ys) (mult xs ys)
 
-nines = 9:nines
+sub :: [Integer] -> [Integer] -> [Integer]
+sub [] [] = []
+sub [] ys = sub (0:[]) ys
+sub xs [] = xs 
+sub (x:xs) (y:ys) = if(x >= y) then (x-y):(sub xs ys) else (p+x-y):(sub (borrow xs) ys)
 
+borrow :: [Integer] -> [Integer]
+borrow [] = pminus1s
+borrow (x:xs) = if(x>0)then(x-1):xs else (p-1):(borrow xs)
+
+pminus1s = pminus1:pminus1s
 ones = 1:ones
