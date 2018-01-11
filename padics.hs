@@ -2,6 +2,7 @@
 p = 10
 pminus1 = (p-1)
 pminus1s = pminus1:pminus1s
+zeroes = 0:zeroes
 ones = 1:ones
 
 -- ADDITION
@@ -46,10 +47,21 @@ mult (x:xs) ys = addShift (addLoop x ys) (mult xs ys)
 
 -- DIVISION
 
-table' :: Integer -> Integer -> [Integer]
-table' n count = if(count == p) then [] else (n*count):(table' n (count+1))
-table :: Integer -> [Integer]
-table n = table' n 0
+-- won't terminate on non prime bases
+-- return a NONE option for when n = p ??
+findMatch' :: Integer -> Integer -> Integer -> Integer
+findMatch' t b n = if((n*b) `mod` p == t) then n else findMatch' t b (n+1)
+findMatch :: Integer -> Integer -> Integer
+findMatch t b = findMatch' t b 0
 
+removeLastDigit :: [Integer] -> [Integer]
+removeLastDigit [] = []
+removeLastDigit (x:xs) = xs
 
---divn :: [Integer] -> [Integer] -> [Integer]
+-- there's a zero coming from terminating lists somewhere.... 
+-- make exhaustive! empty list pattern matches and then stuff can HAPPEN!
+divn :: [Integer] -> [Integer] -> [Integer]
+divn [] (y:ys) = []
+-- divide by zero error below here.... c shouldn't take this input though.... 
+divn _ [] = []
+divn (x:xs) (y:ys) = (findMatch x y):(divn (removeLastDigit (sub (x:xs) (mult ((findMatch x y):zeroes) (y:ys)))) (y:ys))
