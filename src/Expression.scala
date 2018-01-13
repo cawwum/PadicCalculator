@@ -9,19 +9,17 @@ class Expression
 
     var p:Int = 10;
 
-    var pA:PadicAddition = new PadicAddition(p)
-    var pS:PadicSubtraction = new PadicSubtraction(p)
-    var pM:PadicMultiplication = new PadicMultiplication(p)
+    var pO:PadicOperations = new PadicOperations
 
     val amountToIterate = 1000
     var iterateCount:Int = amountToIterate
 
-    lazy val add1 = pA.add(pminus1s,pminus1s)
-    lazy val add2 = pA.add(pminus1s,pminus1s)
+    val add1 = pO.add(pminus1s,pminus1s)
+    val sub2 = pO.sub(pminus1s,pminus1s)
 
-    lazy val addAll = pA.add(add1,add2)
+    val addAll = pO.add(add1,sub2)
 
-    lazy val expression = pM.practiceMult(pminus1s,pminus1s).iterator
+    val expression = pO.practiceMult(twelve(),nineynine).iterator
 
     def exampleIt() =
     {
@@ -32,7 +30,7 @@ class Expression
                 println(expression.next())
 
             }
-            else println("No more! I can't take it anymore !!")
+            else println("No more")
         }
 
         iterateCount+=amountToIterate
